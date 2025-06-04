@@ -43,7 +43,6 @@ export class LoginComponent {
 
   logout() {
     localStorage.removeItem('token');
-    this.toastr.success("Logout successfully.")
     this.router.navigate(['/login']);
   }
 
