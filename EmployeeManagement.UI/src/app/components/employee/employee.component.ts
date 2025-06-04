@@ -39,18 +39,18 @@ export class EmployeeComponent implements OnInit {
     if (emp.id == 0) {
       this.empService.create(emp).subscribe( {
         next: () => {
-        this.loadEmployees();
         this.form.reset({ id: 0 });
       },
-      error: () => alert('Something Went Wrong!')
+      error: (error) => alert(`${JSON.stringify(error)}`),
+      complete: () => this.loadEmployees()
     });
-    } else {
-      this.empService.update(emp).subscribe( {
-        next: () => {
-        this.loadEmployees();
+  } else {
+    this.empService.update(emp).subscribe( {
+      next: () => {
         this.form.reset({ id: 0 });
       },
-      error: () => alert('Something Went Wrong!')
+      error: (error) => alert(`${JSON.stringify(error)}`),
+      complete: () => this.loadEmployees()
     });
     }
   }
