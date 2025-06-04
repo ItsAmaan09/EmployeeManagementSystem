@@ -40,7 +40,7 @@ export class EmployeeComponent implements OnInit {
     if (emp.id == 0) {
       this.empService.create(emp).subscribe( {
         next: (res: any) => {
-        res.IsSuccess ? this.toastr.success(res.Message) : this.toastr.error(res.Message);
+        res.isSuccess ? this.toastr.success(res.message) : this.toastr.error(res.message);
         this.form.reset({ id: 0 });
       },
       error: (error) => this.toastr.error(JSON.stringify(error)),
@@ -49,7 +49,8 @@ export class EmployeeComponent implements OnInit {
   } else {
     this.empService.update(emp).subscribe( {
       next: (res: any) => {
-        res.IsSuccess ? this.toastr.success(res.Message) : this.toastr.error(res.Message);
+        debugger;
+        res.isSuccess ? this.toastr.success(res.message) : this.toastr.error(res.message);
         this.form.reset({ id: 0 });
       },
       error: (error) => this.toastr.error(JSON.stringify(error)),
@@ -66,7 +67,7 @@ export class EmployeeComponent implements OnInit {
     if (confirm('Are you sure?')) {
       this.empService.delete(id).subscribe({
         next: (res: any) => {
-          res.IsSuccess ? this.toastr.success(res.Message) : this.toastr.error(res.Message);
+          res.isSuccess ? this.toastr.success(res.message) : this.toastr.error(res.message);
           this.loadEmployees();
         },
         error: (error) => this.toastr.error(JSON.stringify(error)),
