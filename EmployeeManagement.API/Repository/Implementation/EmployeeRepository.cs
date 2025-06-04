@@ -38,13 +38,18 @@ namespace EmployeeManagement.API.Repository.Implementation
             }
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public async Task<EmployeeDeleteDO> DeleteAsync(int id)
         {
             try
             {
-                var query = "DELETE FROM Employees WHERE Id = @Id";
                 using var connection = _context.CreateConnection();
-                return await connection.ExecuteAsync(query, new { Id = id });
+
+                var parameters = new DynamicParameters();
+                parameters.Add("Id", id);
+                var query = "DELETE FROM Employees WHERE Id = @Id";
+                var rowsAffected = await connection.ExecuteAsync(query, parameters);
+
+                return rowsAffected > 0 ? new EmployeeDeleteDO { EmployeeId = id } : null;
             }
             catch (System.Exception)
             {

@@ -8,6 +8,6 @@ namespace EmployeeManagement.API.Services.Interfaces
         Task<Employee> GetByIdAsync(int id);
         Task<EmployeeAddResponseBO> AddAsync(Employee employee);
         Task<EmployeeUpdateResponseBO> UpdateAsync(Employee employee);
-        Task<int> DeleteAsync(int id);
+        Task<EmployeeDeleteResponseBO> DeleteAsync(int id);
     }
 }

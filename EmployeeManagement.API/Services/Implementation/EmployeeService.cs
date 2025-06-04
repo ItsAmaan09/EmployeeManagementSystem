@@ -15,7 +15,8 @@ namespace EmployeeManagement.API.Services.Implementation
 
         public Task<IEnumerable<Employee>> GetAllAsync() => _repository.GetAllAsync();
         public Task<Employee> GetByIdAsync(int id) => _repository.GetByIdAsync(id);
-        public async Task<EmployeeAddResponseBO> AddAsync(Employee employee) {
+        public async Task<EmployeeAddResponseBO> AddAsync(Employee employee)
+        {
             try
             {
                 var employeeAddResponseBO = new EmployeeAddResponseBO();
@@ -70,6 +71,27 @@ namespace EmployeeManagement.API.Services.Implementation
                 throw;
             }
         }
-        public Task<int> DeleteAsync(int id) => _repository.DeleteAsync(id);
+        public async Task<EmployeeDeleteResponseBO> DeleteAsync(int id)
+        {
+            var employeeDeleteResponseBO = new EmployeeDeleteResponseBO();
+
+            var employeeDeleteDO = await _repository.DeleteAsync(id);
+
+            if (employeeDeleteDO != null)
+            {
+                return new EmployeeDeleteResponseBO
+                {
+                    IsSuccess = true,
+                    EmployeeId = employeeDeleteDO.EmployeeId,
+                    Message = "Employee deleted successfully."
+                };
+            }
+            return new EmployeeDeleteResponseBO
+            {
+                IsSuccess = false,
+                EmployeeId = employeeDeleteDO.EmployeeId,
+                Message = "Employee deleted successfully."
+            };
+        }
     }
 }

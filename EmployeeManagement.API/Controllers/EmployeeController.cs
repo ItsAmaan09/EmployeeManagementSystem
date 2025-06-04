@@ -49,9 +49,7 @@ namespace EmployeeManagement.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _service.DeleteAsync(id);
-            return result > 0 ? Ok("Success") : BadRequest("Failed");
+            return result.IsSuccess  ? Ok(result) : BadRequest(result);
         }
-
-
     }
 }
