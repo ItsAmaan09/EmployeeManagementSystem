@@ -19,6 +19,16 @@ builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularClient", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+    });
+});
+
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 
@@ -43,6 +53,8 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
+// CORS pollicy
+app.UseCors("AllowAngularClient");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
