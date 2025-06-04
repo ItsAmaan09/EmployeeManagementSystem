@@ -75,9 +75,16 @@ namespace EmployeeManagement.API.Repository.Implementation
         {
             try
             {
-                var query = "UPDATE Employees SET Name = @Name, Department = @Department, Email = @Email WHERE Id = @Id";
                 using var connection = _context.CreateConnection();
-                return await connection.ExecuteAsync(query, employee);
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("Id", employee.Id);
+                parameters.Add("Name", employee.Name);
+                parameters.Add("Department", employee.Department);
+                parameters.Add("Email", employee.Email);
+
+                var query = "UPDATE Employees SET Name = @Name, Department = @Department, Email = @Email WHERE Id = @Id";
+                return await connection.ExecuteAsync(query, parameters);
             }
             catch (System.Exception)
             {
