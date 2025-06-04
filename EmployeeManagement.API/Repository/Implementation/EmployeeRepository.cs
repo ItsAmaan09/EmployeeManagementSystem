@@ -13,13 +13,23 @@ namespace EmployeeManagement.API.Repository.Implementation
             _context = context;
         }
 
-        public async Task<int> AddAsync(Employee employee)
+        public async Task<EmployeeAddDO?> AddAsync(Employee employee)
         {
             try
             {
                 using var connection = _context.CreateConnection();
-                var query = "INSERT INTO Employees (Name, Department, Email) VALUES (@Name, @Department, @Email)";
-                return await connection.ExecuteAsync(query, employee);
+
+                var parameters = new DynamicParameters();
+                parameters.Add("Name", employee.Name);
+                parameters.Add("Department", employee.Department);
+                parameters.Add("Email", employee.Email);
+
+                var query = @"INSERT INTO Employees (Name, Department, Email) 
+                                        VALUES (@Name, @Department, @Email)
+                                        SELECT CAST(SCOPE_IDENTITY() as INT);";
+
+                var insertedId = await connection.ExecuteScalarAsync<int>(query, parameters);
+                return insertedId > 0 ? new EmployeeAddDO { EmployeeId = insertedId } : null;
             }
             catch (System.Exception)
             {
@@ -71,7 +81,7 @@ namespace EmployeeManagement.API.Repository.Implementation
             }
         }
 
-        public async Task<int> UpdateAsync(Employee employee)
+        public async Task<EmployeeUpdateDO?> UpdateAsync(Employee employee)
         {
             try
             {
@@ -84,11 +94,11 @@ namespace EmployeeManagement.API.Repository.Implementation
                 parameters.Add("Email", employee.Email);
 
                 var query = "UPDATE Employees SET Name = @Name, Department = @Department, Email = @Email WHERE Id = @Id";
-                return await connection.ExecuteAsync(query, parameters);
+                var rowsAffected = await connection.ExecuteAsync(query, parameters);
+                return rowsAffected > 0 ? new EmployeeUpdateDO { EmployeeId = employee.Id } : null;
             }
-            catch (System.Exception)
+            catch (Exception)
             {
-
                 throw;
             }
         }

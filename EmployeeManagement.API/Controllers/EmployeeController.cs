@@ -33,7 +33,7 @@ namespace EmployeeManagement.API.Controllers
         public async Task<IActionResult> Add(Employee employee)
         {
             var result = await _service.AddAsync(employee);
-            return result > 0 ? Ok("Success") : BadRequest("Failed");
+            return result.IsSuccess  ? Ok(result) : BadRequest(result);
         }
         
         [Authorize]
@@ -41,7 +41,7 @@ namespace EmployeeManagement.API.Controllers
         public async Task<IActionResult> Update(Employee employee)
         {
             var result = await _service.UpdateAsync(employee);
-            return result > 0 ? Ok("Success") : BadRequest("Failed");
+            return result.IsSuccess ? Ok(result) : BadRequest(result); 
         }
 
         [Authorize]
