@@ -23,9 +23,10 @@ export class LoginComponent {
   }
 
   login() {
+    debugger;
     this.submitted = true;
 
-    if (this.form.invalid) {
+    if (!this.form.invalid) {
       return;
     }
 

@@ -25,24 +25,33 @@ export class EmployeeComponent implements OnInit {
   }
 
   loadEmployees() {
-    this.empService.getAll().subscribe((data) => {
-      this.employees = data;
+    this.empService.getAll().subscribe( {
+      next : (data) => {
+        this.employees = data;
+      },
+      error: () => alert('Something went wrong!')
     });
   }
 
   onSubmit() {
     const emp = this.form.value;
 
-    if (emp.id === 0) {
-      this.empService.create(emp).subscribe(() => {
+    if (emp.id == 0) {
+      this.empService.create(emp).subscribe( {
+        next: () => {
         this.loadEmployees();
         this.form.reset({ id: 0 });
-      });
+      },
+      error: () => alert('Something Went Wrong!')
+    });
     } else {
-      this.empService.update(emp.id, emp).subscribe(() => {
+      this.empService.update(emp).subscribe( {
+        next: () => {
         this.loadEmployees();
         this.form.reset({ id: 0 });
-      });
+      },
+      error: () => alert('Something Went Wrong!')
+    });
     }
   }
 
@@ -52,8 +61,11 @@ export class EmployeeComponent implements OnInit {
 
   delete(id: number) {
     if (confirm('Are you sure?')) {
-      this.empService.delete(id).subscribe(() => {
-        this.loadEmployees();
+      this.empService.delete(id).subscribe({
+        next: () => {
+          this.loadEmployees();
+        }, 
+        error: () => alert("Something went wrong")
       });
     }
   }
