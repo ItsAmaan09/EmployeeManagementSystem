@@ -78,3 +78,4 @@ E:\Coding_Projects\FullStack Projects\EmployeeManagement\EmployeeManagement.API\
 E:\Coding_Projects\FullStack Projects\EmployeeManagement\EmployeeManagement.API\obj\Debug\net8.0\EmployeeManagement.API.genruntimeconfig.cache
 E:\Coding_Projects\FullStack Projects\EmployeeManagement\EmployeeManagement.API\obj\Debug\net8.0\ref\EmployeeManagement.API.dll
 E:\Coding_Projects\FullStack Projects\EmployeeManagement\EmployeeManagement.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Coding_Projects\FullStack Projects\EmployeeManagement\EmployeeManagement.API\obj\Debug\net8.0\EmployeeManagement.API.sourcelink.json
