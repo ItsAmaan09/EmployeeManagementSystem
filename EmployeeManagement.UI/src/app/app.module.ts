@@ -10,6 +10,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +21,13 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-right',
       timeOut: 3000
     })
   ],
