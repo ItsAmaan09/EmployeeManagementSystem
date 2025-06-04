@@ -8,11 +8,13 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
