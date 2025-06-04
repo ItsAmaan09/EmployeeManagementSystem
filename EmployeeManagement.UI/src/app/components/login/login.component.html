@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h3>Login</h3>
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <div class="form-group">
+      <label>Username</label>
+      <input
+        formControlName="username"
+        class="form-control"
+        />
+        <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+        Username is required
+      </div> -->
+    </div>
+
+    <div class="form-group mt-3">
+      <label>Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        />
+        <!-- <div *ngIf="submitted && f.['password'].errors" class="invalid-feedback">
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        <div *ngIf="f.['password'].errors.['required']">Password is required</div>
+        <div *ngIf="f.['password'].errors.['minlength']">
+          Password must be at least 5 characters
+        </div>
+      </div> -->
+    </div>
+
+    <button class="btn btn-primary mt-4">Login</button>
+  </form>
+</div>
