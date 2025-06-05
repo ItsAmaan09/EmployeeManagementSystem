@@ -9,23 +9,23 @@ namespace EmployeeManagement.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly ITokenService _service;
+        private readonly ITokenService _tokenService;
+        private readonly IUserService _userService;
 
-        public AuthController(ITokenService service)
+        public AuthController(ITokenService tokenService, IUserService userService)
         {
-            _service = service;
+            _tokenService = tokenService;
+            _userService = userService;
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest login)
+        public async Task<IActionResult> Login([FromBody] User login)
         {
-            if (login.Username == "admin" && login.Password == "1234")
-            {
-                var token = _service.GenerateToken(login.Username);
-                return Ok(new { token });
-            }
+            var user = await _userService.ValidateUser(login.Username, login.Password);
+            if (user == null) return Unauthorized(new { IsSuccess = false, Message = "Invalid crediantials" });
 
-            return Unauthorized("Invalid crediantials");
+            var token = _tokenService.GenerateToken(user.Username, user.Role);
+            return Ok(new { IsSuccess = true, Token = token, Role = user.Role });
         }
     }
 }

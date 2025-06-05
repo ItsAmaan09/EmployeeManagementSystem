@@ -14,7 +14,7 @@ namespace EmployeeManagement.API.Services.Implementation
         {
             _configuration = configuration;
         }
-        public string GenerateToken(string username)
+        public string GenerateToken(string username, string role)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
@@ -25,7 +25,8 @@ namespace EmployeeManagement.API.Services.Implementation
                 audience: jwtSettings["Audience"],
                 claims: new[]
                 {
-                    new Claim(ClaimTypes.Name, username)
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, role)
                 },
                 expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(jwtSettings["ExpireMinutes"])),
                 signingCredentials: creds
