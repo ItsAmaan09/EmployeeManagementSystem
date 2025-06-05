@@ -24,8 +24,14 @@ namespace EmployeeManagement.API.Repository.Implementation
                 parameters.Add("Password", password);
                 var query = @"SELECT * FROM Users WHERE Username = @username AND
                 Password = @password";
+                var user = await connection.QueryFirstOrDefaultAsync<User>(query, parameters);
 
-                return await connection.QueryFirstOrDefaultAsync<User>(query, parameters);
+                if (user == null) return null;
+
+                var hasher = new PasswordHasher<User>();
+                var result = hasher.VerifyHashedPassword(user, user.Password, password);
+
+                return result == PasswordVerificationResult.Success ? user : null;
             }
             catch (System.Exception)
             {
