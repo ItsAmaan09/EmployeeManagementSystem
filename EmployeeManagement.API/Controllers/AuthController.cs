@@ -1,3 +1,4 @@
+using EmployeeManagement.API.DTOs;
 using EmployeeManagement.API.Models;
 using EmployeeManagement.API.Services.Interfaces;
 //using Microsoft.AspNetCore.Identity.Data;
@@ -26,6 +27,15 @@ namespace EmployeeManagement.API.Controllers
 
             var token = _tokenService.GenerateToken(user.Username, user.Role);
             return Ok(new { IsSuccess = true, Token = token, Role = user.Role });
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(UserRegisterDTO dto)
+        {
+            var success = await _userService.RegisterUser(dto);
+            if (!success) return BadRequest(new { IsSuccess = false, Message = "User not created." });
+
+            return Ok(new { IsSuccess = true, Message = "User created successfully." });
         }
     }
 }
