@@ -22,16 +22,8 @@ namespace EmployeeManagement.API.Repository.Implementation
                 var parameters = new DynamicParameters();
                 parameters.Add("Username", username);
                 parameters.Add("Password", password);
-                var query = @"SELECT * FROM Users WHERE Username = @username AND
-                Password = @password";
-                var user = await connection.QueryFirstOrDefaultAsync<User>(query, parameters);
-
-                if (user == null) return null;
-
-                var hasher = new PasswordHasher<User>();
-                var result = hasher.VerifyHashedPassword(user, user.Password, password);
-
-                return result == PasswordVerificationResult.Success ? user : null;
+                var query = @"SELECT * FROM Users WHERE Username = @username";
+                return await connection.QueryFirstOrDefaultAsync<User>(query, parameters);
             }
             catch (System.Exception)
             {
@@ -43,9 +35,6 @@ namespace EmployeeManagement.API.Repository.Implementation
         {
             try
             {
-                var passwordHasher = new PasswordHasher<UserRegisterDTO>();
-                var hasedPassword = passwordHasher.HashPassword(dto, dto.Password);
-
                 using var connection = _context.CreateConnection();
                 var parameters = new DynamicParameters();
                 parameters.Add("Username", dto.Username);

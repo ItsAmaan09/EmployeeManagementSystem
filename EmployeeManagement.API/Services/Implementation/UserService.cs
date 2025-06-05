@@ -21,11 +21,17 @@ namespace EmployeeManagement.API.Services.Implementation
         {
             try
             {
-                return await _userRepository.ValidateUser(username, password);
+                var user = await _userRepository.ValidateUser(username, password);
+                if (user == null) return null;
+
+                var hasher = new PasswordHasher<User>();
+                var result = hasher.VerifyHashedPassword(user, user.Password, password);
+
+                return result == PasswordVerificationResult.Success ? user : null;
             }
             catch (System.Exception)
             {
-                
+
                 throw;
             }
         }
@@ -34,6 +40,8 @@ namespace EmployeeManagement.API.Services.Implementation
         {
             try
             {
+                var passwordHasher = new PasswordHasher<UserRegisterDTO>();
+                dto.Password = passwordHasher.HashPassword(dto, dto.Password);
                 return await _userRepository.RegisterUser(dto);
             }
             catch (System.Exception)
