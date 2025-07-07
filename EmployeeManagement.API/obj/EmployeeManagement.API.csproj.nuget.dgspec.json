@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\employeemanagement.api\\EmployeeManagement.API.csproj": {}
+    "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\EmployeeManagement.API\\EmployeeManagement.API.csproj": {}
   },
   "projects": {
-    "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\employeemanagement.api\\EmployeeManagement.API.csproj": {
+    "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\EmployeeManagement.API\\EmployeeManagement.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\employeemanagement.api\\EmployeeManagement.API.csproj",
+        "projectUniqueName": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\EmployeeManagement.API\\EmployeeManagement.API.csproj",
         "projectName": "EmployeeManagement.API",
-        "projectPath": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\employeemanagement.api\\EmployeeManagement.API.csproj",
+        "projectPath": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\EmployeeManagement.API\\EmployeeManagement.API.csproj",
         "packagesPath": "C:\\Users\\Its_A\\.nuget\\packages\\",
-        "outputPath": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\employeemanagement.api\\obj\\",
+        "outputPath": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\EmployeeManagement.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Its_A\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.314/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

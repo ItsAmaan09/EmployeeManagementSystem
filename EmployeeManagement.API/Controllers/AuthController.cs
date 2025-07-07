@@ -23,7 +23,7 @@ namespace EmployeeManagement.API.Controllers
         public async Task<IActionResult> Login([FromBody] User login)
         {
             var user = await _userService.ValidateUser(login.Username, login.Password);
-            if (user == null) return Unauthorized(new { IsSuccess = false, Message = "Invalid crediantials" });
+            if (user == null) return Unauthorized(new { IsSuccess = false, Message = "Invalid credentials" });
 
             var token = _tokenService.GenerateToken(user.Username, user.Role);
             return Ok(new { IsSuccess = true, Token = token, Role = user.Role });

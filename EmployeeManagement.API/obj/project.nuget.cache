@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dtwYRqxgUj8=",
+  "dgSpecHash": "KIBl4SNoCQc=",
   "success": true,
-  "projectFilePath": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\employeemanagement.api\\EmployeeManagement.API.csproj",
+  "projectFilePath": "E:\\Coding_Projects\\FullStack Projects\\EmployeeManagement\\EmployeeManagement.API\\EmployeeManagement.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Its_A\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Its_A\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
